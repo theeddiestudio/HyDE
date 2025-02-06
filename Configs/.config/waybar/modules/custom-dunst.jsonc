@@ -1,0 +1,37 @@
+{
+    "custom/dunst": {
+        "format": "{icon} {text}",
+        "rotate": 0,
+        "format-icons": {
+            "email-notification": "\uf42f<span foreground='white'><sup>\uf444</sup></span>",
+            "chat-notification": "\udb84\udeca<span foreground='white'><sup>\uf444</sup></span>",
+            "warning-notification": "\udb86\ude2a<span foreground='yellow'><sup>\uf444</sup></span>",
+            "error-notification": "\udb86\ude2a<span foreground='red'><sup>\uf444</sup></span>",
+            "network-notification": "\udb84\udc87<span foreground='white'><sup>\uf444</sup></span>",
+            "battery-notification": "\udb80\udc7a<span foreground='white'><sup>\uf444</sup></span>",
+            "update-notification": "\udb81\udeb0<span foreground='white'><sup>\uf444</sup></span>",
+            "music-notification": "\udb81\udf5a<span foreground='white'><sup>\uf444</sup></span>",
+            "volume-notification": "\udb81\udd7f<span foreground='white'><sup>\uf444</sup></span>",
+            "notification": "\uf0a2<span foreground='white'><sup>\uf444</sup></span>",
+            "dnd": "\uec09",
+            "none": "\uf0a2"
+        },
+        "return-type": "json",
+        "exec-if": "which dunstctl",
+        "exec": "notifications.py",
+        "on-scroll-down": "sleep 0.1 && dunstctl history-pop",
+        "on-click": "dunstctl set-paused toggle",
+        "on-click-middle": "dunstctl history-clear",
+        "interval": 1,
+        "tooltip": true,
+        "escape": true,
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/dunst-notification.xml",
+        "menu-actions": {
+            "show": "dunstctl history-pop",
+            "toggle-dnd": "dunstctl set-paused toggle",
+            "clear": "dunstctl history-clear",
+            "close-all": "dunstctl close-all"
+        }
+    }
+}

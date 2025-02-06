@@ -1,0 +1,12 @@
+{
+    "custom/updates": {
+        "exec": "systemupdate.sh",
+        "return-type": "json",
+        "format": "{text}",
+        "rotate": 0,
+        "on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
+        "interval": 86400,
+        "tooltip": true,
+        "signal": 20
+    }
+}

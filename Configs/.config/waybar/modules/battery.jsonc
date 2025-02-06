@@ -1,3 +1,4 @@
+{
     "battery": {
         "states": {
             "good": 95,
@@ -5,10 +6,23 @@
             "critical": 20
         },
         "format": "{icon} {capacity}%",
-        "rotate": ${r_deg},
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "rotate": 0,
+        "format-charging": "\uf1e6 {capacity}%",
+        "format-plugged": "\uf1e6 {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "format-icons": [
+            "\udb80\udc8e",
+            "\udb80\udc7a",
+            "\udb80\udc7b",
+            "\udb80\udc7c",
+            "\udb80\udc7d",
+            "\udb80\udc7e",
+            "\udb80\udc7f",
+            "\udb80\udc80",
+            "\udb80\udc81",
+            "\udb80\udc82",
+            "\udb80\udc79"
+        ]
     },
-
+    "_comments": []
+}

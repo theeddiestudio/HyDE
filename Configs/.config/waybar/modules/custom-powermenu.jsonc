@@ -1,0 +1,16 @@
+{
+    "custom/powermenu": {
+        "format": "⏻",
+        "tooltip": false,
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/power.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        },
+        "signal": 1
+    },
+    "_comments": []
+}

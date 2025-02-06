@@ -1,35 +1,33 @@
-"pulseaudio": {
-    "format": "{icon} {volume}",
-    "rotate": ${r_deg},
-    "format-muted": "婢",
-    "on-click": "pavucontrol -t 3",
-    "on-click-right": "volumecontrol.sh -s ''",
-    "on-click-middle": "volumecontrol.sh -o m",
-    "on-scroll-up": "volumecontrol.sh -o i",
-    "on-scroll-down": "volumecontrol.sh -o d",
-    "tooltip-format": "{icon} {desc} // {volume}%",
-    "scroll-step": 5,
-    "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
+{
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "rotate": 0,
+        "format-muted": "\ufa80",
+        "on-click": "pavucontrol -t 3",
+        "on-click-middle": "volumecontrol.sh -o m",
+        "on-scroll-up": "volumecontrol.sh -o i",
+        "on-scroll-down": "volumecontrol.sh -o d",
+        "tooltip-format": "{icon} {desc} // {volume}%",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "\uf025",
+            "hands-free": "\uf025",
+            "headset": "\uf025",
+            "phone": "\uf095",
+            "portable": "\uf095",
+            "car": "\uf1b9",
+            "default": [
+                "\uf026",
+                "\uf027",
+                "\uf028"
+            ]
+        },
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/pulseaudio.xml",
+        "menu-actions": {
+            "toggle-output": "volumecontrol.sh -t",
+            "toggle-mute": "volumecontrol.sh -o m",
+            "select-output": "volumecontrol.sh -s ''"
+        }
     }
-},
-
-"pulseaudio#microphone": {
-    "format": "{format_source}",
-    "rotate": ${r_deg},
-    "format-source": "",
-    "format-source-muted": "",
-    "on-click": "pavucontrol -t 4",
-    "on-click-middle": "volumecontrol.sh -i m",
-    "on-scroll-up": "volumecontrol.sh -i i",
-    "on-scroll-down": "volumecontrol.sh -i d",
-    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-    "scroll-step": 5
-},
-
+}

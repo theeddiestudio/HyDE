@@ -1,0 +1,33 @@
+/* ? half pill with the flat surface pointing upwards */
+
+window#waybar.top #pill-up,
+window#waybar.top #pill-up button,
+window#waybar.bottom #pill-up,
+window#waybar.bottom #pill-up button {
+    border-radius: 10pt 10pt 0 0;
+    border-width: 0em 1.5em 0;
+}
+
+window#waybar.left #pill-up,
+window#waybar.left #pill-up button,
+window#waybar.right #pill-up,
+window#waybar.right #pill-up button {
+    border-radius: 10pt 10pt 0 0;
+    border-width: 1em 0 1em;
+}
+
+window#waybar.top #pill-up,
+window#waybar.bottom #pill-up {
+    margin-top: 0.3em;
+    margin-bottom: 0em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+window#waybar.left #pill-up,
+window#waybar.right #pill-up {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 1em;
+    margin-bottom: 0em;
+}
