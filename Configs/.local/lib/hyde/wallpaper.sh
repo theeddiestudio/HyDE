@@ -124,13 +124,14 @@ Wall_Select() {
 
     #// scale for monitor
 
-    mon_x_res=$(hyprctl -j monitors | jq '.[] | select(.focused == true) | (.width / .scale)')
+    mon_x_res=$(hyprctl -j monitors | jq '.[] | select(.focused == true) | (.width / .scale | round)')
 
     #// generate config
 
     elm_width=$(((28 + 8 + 5) * font_scale))
     max_avail=$((mon_x_res - (4 * font_scale)))
     col_count=$((max_avail / elm_width))
+
     r_override="window{width:100%;}
     listview{columns:${col_count};spacing:5em;}
     element{border-radius:${elem_border}px;
