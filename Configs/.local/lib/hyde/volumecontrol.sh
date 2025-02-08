@@ -48,6 +48,7 @@ EOF
 }
 
 notify_vol() {
+    local vol=$1
     angle=$((((vol + 2) / 5) * 5))
     iconStyle="knob"
     # cap the icon at 100 if vol > 100
@@ -78,10 +79,11 @@ change_volume() {
     [ "${srce}" = "--default-source" ] && mode="--input-volume"
     case $device in
     "pamixer")
-        $use_swayosd && swayosd-client ${mode} "${delta}${step}" && exit 0
-        if [ "$isVolumeBoost" = true ]; then
-            pamixer "$srce" --allow-boost --set-limit "${VOLUME_BOOST_LIMIT:-150}" -"${action}" "$step"
+        if [ "${isVolumeBoost}" = true ]; then
+            $use_swayosd && swayosd-client ${mode} "${delta}${step}" --max-volume "${VOLUME_BOOST_LIMIT:-150}" && exit 0
+            pamixer "$srce" "${allow_boost:-}" --allow-boost --set-limit "${VOLUME_BOOST_LIMIT:-150}" -"${action}" "$step"
         else
+            $use_swayosd && swayosd-client ${mode} "${delta}${step}" && exit 0
             pamixer "$srce" -"${action}" "$step"
         fi
         vol=$(pamixer "$srce" --get-volume)
@@ -92,7 +94,7 @@ change_volume() {
         ;;
     esac
 
-    notify_vol
+    notify_vol "$vol"
 }
 
 toggle_mute() {
