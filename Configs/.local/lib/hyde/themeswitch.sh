@@ -190,6 +190,17 @@ if [ ! -L "$HOME/.themes/${gtkTheme}" ] && [ -d "${themesDir}/${gtkTheme}" ]; th
 fi
 
 #// wallpaper
+export -f pkg_installed
+export scrDir
+find "$HYDE_CACHE_HOME/wallpapers" -name "*.png" -exec sh -c '
+    for file; do
+        base=$(basename "$file" .png)
+        if pkg_installed ${base}; then
+            "${scrDir}/wallpaper.sh" --link --backend "${base}"
+        fi
+    done
+' sh {} +
+
 if [ "$quiet" = true ]; then
     "${scrDir}/wallpaper.sh" -s "$(readlink "${HYDE_THEME_DIR}/wall.set")" --backend swww --global >/dev/null 2>&1
 else

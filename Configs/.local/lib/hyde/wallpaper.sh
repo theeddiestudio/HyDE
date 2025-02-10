@@ -18,6 +18,7 @@ options:
     -s, --set <file>          Set specified wallpaper
     -g, --get                 Get current wallpaper of specified backend
     -o, --output <file>       Copy current wallpaper to specified file
+        --link                Resolved the linked wallpaper according to the theme
     -h, --help                Display this help message
 
 flags:
@@ -162,7 +163,7 @@ Wall_Select() {
 }
 
 Wall_Hash() {
-    # * Method to load wallpapers in hashmaps
+    # * Method to load wallpapers in hashmaps and fix broken links per theme
     setIndex=0
     [ ! -d "${HYDE_THEME_DIR}" ] && echo "ERROR: \"${HYDE_THEME_DIR}\" does not exist" && exit 0
     wallPathArray=("${HYDE_THEME_DIR}")
@@ -273,6 +274,11 @@ main() {
             get_hashmap "${selected_wallpaper_path}"
             Wall_Cache
             ;;
+        link)
+            Wall_Hash
+            Wall_Cache
+            exit 0
+            ;;
         esac
     fi
 
@@ -308,7 +314,7 @@ if [ -z "${*}" ]; then
 fi
 
 # Define long options
-LONGOPTS="global,select,json,next,previous,random,set:,backend:,get,output,help"
+LONGOPTS="link,global,select,json,next,previous,random,set:,backend:,get,output,help"
 
 # Parse options
 PARSED=$(
@@ -324,6 +330,10 @@ while true; do
     case "$1" in
     -G | --global)
         set_as_global=true
+        shift
+        ;;
+    --link)
+        wallpaper_setter_flag="link"
         shift
         ;;
     -j | --json)
