@@ -1,6 +1,6 @@
 {
     "custom/theme": {
-        "format": "\ue22b{text}",
+        "format": "\ue22b{0}",
         "rotate": 0,
         "exec": "echo ; echo \udb81\udfe1 switch theme",
         "on-click": "themeswitch.sh -n",

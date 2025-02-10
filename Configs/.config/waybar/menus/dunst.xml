@@ -3,7 +3,7 @@
     <object class="GtkMenu" id="menu">
         <child>
             <object class="GtkMenuItem" id="show">
-                <property name="label"> History</property>
+                <property name="label"> Show History</property>
             </object>
         </child>
         <child>
@@ -11,6 +11,12 @@
                 <property name="label"> Toggle DND</property>
             </object>
         </child>
+
+
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter1" />
+        </child>
+
 
         <child>
             <object class="GtkMenuItem" id="clear">

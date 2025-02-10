@@ -1,0 +1,21 @@
+{
+    "custom/hyde-menu": {
+        "format": " ",
+        "tooltip": "Right-click for more options",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/hyde-menu.xml",
+        "menu-actions": {
+            "wallpaper-select": "wallpaper.sh --backend swww --select --global",
+            "wallpaper-next": "wallpaper.sh --backend swww --next --global",
+            "wallpaper-previous": "wallpaper.sh --backend swww --previous --global",
+            "wallpaper-random": "wallpaper.sh --backend swww --random --global",
+            "theme-next": "themeswitch.sh -n",
+            "theme-previous": "themeswitch.sh -p",
+            "theme-select": "themeselect.sh",
+            "waybar-restart": "waybar.py -ubg",
+            "waybar-reload-css": "sed -i '${/^$/d;}'  $XDG_CONFIG_HOME/waybar/style.css ",
+            "checkbox": "notify-send 'Checkbox' 'This is a checkbox'",
+            "about-hyde": "xdg-open https://github.com/HyDE-Project/HyDE"
+        }
+    }
+}

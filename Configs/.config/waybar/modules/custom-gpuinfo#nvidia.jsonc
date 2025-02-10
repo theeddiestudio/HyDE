@@ -2,7 +2,7 @@
     "custom/gpuinfo#nvidia": {
         "exec": " gpuinfo.sh --use nvidia ",
         "return-type": "json",
-        "format": "{text}",
+        "format": "{0}",
         "rotate": 0,
         "interval": 5,
         "tooltip": true,

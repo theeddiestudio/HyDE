@@ -11,7 +11,8 @@
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
     "include": [
-        "$XDG_CONFIG_HOME/waybar/modules/*json*"
+        "$XDG_CONFIG_HOME/waybar/modules/*json*", // This can be uses on waybar-git
+        "$XDG_CONFIG_HOME/waybar/includes.json" // This will be deprecated if waybar 0.12.0 is released on debian
     ],
     "modules-left": [
         "group/leaf-inverse"

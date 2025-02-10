@@ -1,6 +1,6 @@
 {
     "custom/wallchange": {
-        "format": "\uf79f{text}",
+        "format": "\uf79f{0}",
         "rotate": 0,
         "exec": "echo ; echo \udb80\udd8a switch wallpaper",
         "on-click": "swwwallpaper.sh -n",

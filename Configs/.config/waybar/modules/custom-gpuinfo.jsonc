@@ -2,7 +2,7 @@
     "custom/gpuinfo": {
         "exec": " gpuinfo.sh",
         "return-type": "json",
-        "format": "{text}",
+        "format": "{0}",
         "rotate": 0,
         "interval": 5,
         "tooltip": true,

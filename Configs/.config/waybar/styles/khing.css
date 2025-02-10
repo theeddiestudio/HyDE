@@ -153,6 +153,11 @@ window#waybar.right label.module {
 @import "groups/pill-in.css";
 @import "groups/pill-out.css";
 /* Leaf Style */
+
 @import "groups/leaf.css";
 @import "groups/leaf-inverse.css";
+
+
+/* Dynamic Stuff */
 @import "dynamic/border-radius.css";
+@import "dynamic/global.css";

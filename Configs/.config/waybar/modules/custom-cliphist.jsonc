@@ -1,6 +1,6 @@
 {
     "custom/cliphist": {
-        "format": "\uf0ea{text}",
+        "format": "\uf0ea{0}",
         "rotate": 0,
         "exec": "echo ; echo \udb80\udd47 clipboard history",
         "on-click": "sleep 0.1 && cliphist.sh -c",

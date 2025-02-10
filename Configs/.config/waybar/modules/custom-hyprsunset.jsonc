@@ -3,8 +3,8 @@
         "return-type": "json",
         "format": "{icon} ",
         "format-icons": {
-            "active": "\uea70",
-            "inactive": "\ueae7"
+            "active": "",
+            "inactive": ""
         },
         "exec": "hyprsunset.sh r q",
         "rotate": 0,

@@ -1,6 +1,6 @@
 {
     // sourced from header module //
-    "layer": "top",
+    "layer": "bottom",
     "output": [
         "eDP-1"
     ],
@@ -11,7 +11,8 @@
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
     "include": [
-        "$XDG_CONFIG_HOME/waybar/modules/*json*"
+        "$XDG_CONFIG_HOME/waybar/modules/*json*", // This can be uses on waybar-git
+        "$XDG_CONFIG_HOME/waybar/includes.json" // This will be deprecated if waybar 0.12.0 is released on debian
     ],
     "modules-left": [
         "group/leaf-inverse"
@@ -70,8 +71,9 @@
             "custom/gpuinfo",
             "custom/cpuinfo",
             "custom/sensorsinfo",
+            "custom/dunst",
             "custom/swaync",
-            "custom/dunst"
+            "custom/hyde-menu"
         ]
     },
     "group/pill-in#clipboard": {
@@ -81,3 +83,13 @@
         ]
     }
 }
+
+// positions generated based on config.ctl //
+
+	"modules-left": ["custom/padd","","custom/padd"],
+	"modules-center": ["custom/padd","","custom/padd"],
+	"modules-right": ["custom/padd","","custom/padd"],
+
+
+// sourced from modules based on config.ctl //
+
