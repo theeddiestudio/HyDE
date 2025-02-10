@@ -1,3 +1,22 @@
+/* Group Styles */
+
+/* Pill Styles */
+@import "groups/pill.css";
+@import "groups/pill-up.css";
+@import "groups/pill-right.css";
+@import "groups/pill-down.css";
+@import "groups/pill-left.css";
+@import "groups/pill-in.css";
+@import "groups/pill-out.css";
+/* Leaf Style */
+@import "groups/leaf.css";
+@import "groups/leaf-inverse.css";
+
+
+/* Dynamic Stuff */
+@import "dynamic/border-radius.css";
+@import "dynamic/global.css";
+
 /* Base HyDE Styles */
 
 window#waybar {
@@ -28,11 +47,7 @@ window#waybar {
 
 
 
-tooltip {
-    background: @main-bg;
-    color: @main-fg;
-    border-width: 1em;
-}
+
 
 #workspaces button {
     box-shadow: none;
@@ -100,10 +115,11 @@ tooltip {
 
 #tray menu * {
     min-height: 1.6em;
+
 }
 
 #tray menu separator {
-    min-height: 1em;
+    min-height: 0.1em;
 }
 
 
@@ -142,22 +158,87 @@ window#waybar.right label.module {
     margin-bottom: 0.2em;
 }
 
+window#waybar.right #leaf,
+window#waybar.left #leaf,
+window#waybar.right #leaf-inverse,
+window#waybar.left #leaf-inverse,
+window#waybar.right #leaf-up,
+window#waybar.left #leaf-up,
+window#waybar.right #leaf-down,
+window#waybar.left #leaf-down,
+window#waybar.right #leaf-right,
+window#waybar.left #leaf-right,
+window#waybar.right #leaf-left,
+window#waybar.left #leaf-left,
+window#waybar.right #pill,
+window#waybar.left #pill,
+window#waybar.right #pill-right,
+window#waybar.left #pill-right,
+window#waybar.right #pill-left,
+window#waybar.left #pill-left,
+window#waybar.right #pill-down,
+window#waybar.left #pill-down,
+window#waybar.right #pill-up,
+window#waybar.left #pill-up,
+window#waybar.right #pill-in,
+window#waybar.left #pill-in,
+window#waybar.right #pill-out,
+window#waybar.left #pill-out {
+    padding: 0em;
+}
 
-/* Group Styles */
-/* Pill Styles */
-@import "groups/pill.css";
-@import "groups/pill-up.css";
-@import "groups/pill-right.css";
-@import "groups/pill-down.css";
-@import "groups/pill-left.css";
-@import "groups/pill-in.css";
-@import "groups/pill-out.css";
-/* Leaf Style */
+window#waybar.bottom #leaf,
+window#waybar.bottom #leaf-inverse,
+window#waybar.bottom #leaf-up,
+window#waybar.bottom #leaf-down,
+window#waybar.bottom #leaf-right,
+window#waybar.bottom #leaf-left,
+window#waybar.bottom #pill,
+window#waybar.bottom #pill-right,
+window#waybar.bottom #pill-left,
+window#waybar.bottom #pill-down,
+window#waybar.bottom #pill-up,
+window#waybar.bottom #pill-in,
+window#waybar.bottom #pill-out,
+window#waybar.top #leaf,
+window#waybar.top #leaf-inverse,
+window#waybar.top #leaf-up,
+window#waybar.top #leaf-down,
+window#waybar.top #leaf-right,
+window#waybar.top #leaf-left,
+window#waybar.top #pill,
+window#waybar.top #pill-right,
+window#waybar.top #pill-left,
+window#waybar.top #pill-down,
+window#waybar.top #pill-up,
+window#waybar.top #pill-in,
+window#waybar.top #pill-out {
+    padding: 0em 1em;
+}
 
-@import "groups/leaf.css";
-@import "groups/leaf-inverse.css";
+/* ? Dynamic button */
+
+window#waybar.top button,
+window#waybar.bottom button {
+    margin: 0.41em 0.11em;
+    border: 0em;
+    /* padding: 0.1em 0.5em; */
+
+}
+
+window#waybar.left button,
+window#waybar.right button {
+    margin: 0.11em 0.41em;
+    border: 0em
+}
 
 
-/* Dynamic Stuff */
-@import "dynamic/border-radius.css";
-@import "dynamic/global.css";
+
+
+tooltip {
+    all: unset;
+    /* background: @main-bg; */
+    color: @main-fg;
+    border-width: 2em;
+    border-color: @main-fg;
+}

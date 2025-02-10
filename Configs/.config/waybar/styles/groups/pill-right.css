@@ -5,7 +5,7 @@ window#waybar.top #pill-right button,
 window#waybar.bottom #pill-right,
 window#waybar.bottom #pill-right button {
     border-radius: 0 10pt 10pt 0;
-    border-width: 0em 1.2em;
+    border-width: 0em;
 }
 
 window#waybar.left #pill-right,
@@ -13,7 +13,7 @@ window#waybar.left #pill-right button,
 window#waybar.right #pill-right,
 window#waybar.right #pill-right button {
     border-radius: 0 10pt 10pt 0;
-    border-width: 0.3em 1em;
+    border-width: 0em;
 }
 
 window#waybar.top #pill-right,

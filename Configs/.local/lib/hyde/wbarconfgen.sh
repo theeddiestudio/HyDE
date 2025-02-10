@@ -8,4 +8,8 @@ source "${scrDir}/globalcontrol.sh"
 # shellcheck disable=SC2154
 
 echo "DEPRECATION: This script will be removed in the future."
-"${scrDir}/waybar.py" --update-icon-size --update-border-radius --generate-includes
+if [ -z "${1}" ]; then
+    "${scrDir}/waybar.py" --update
+else
+    "${scrDir}/waybar.py" --update "-${1}"
+fi

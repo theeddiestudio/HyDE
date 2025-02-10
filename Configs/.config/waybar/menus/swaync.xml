@@ -16,12 +16,12 @@
                     <object class="GtkMenu">
                         <child>
                             <object class="GtkMenuItem" id="reload-config">
-                                <property name="label"> Config</property>
+                                <property name="label"> Reload Config</property>
                             </object>
                         </child>
                         <child>
                             <object class="GtkMenuItem" id="reload-css">
-                                <property name="label"> Style </property>
+                                <property name="label"> Reload Style </property>
                             </object>
                         </child>
                     </object>

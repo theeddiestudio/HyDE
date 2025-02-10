@@ -1,6 +1,6 @@
 {
     "custom/wbar": {
-        "format": "\uf1a5{0}",
+        "format": "{0}", //    //
         "rotate": 0,
         "exec": "echo ; echo \uf205 switch bar // \uf2d5 dock",
         "on-click": "wbarconfgen.sh n",

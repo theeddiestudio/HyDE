@@ -14,6 +14,9 @@
             "theme-select": "themeselect.sh",
             "waybar-restart": "waybar.py -ubg",
             "waybar-reload-css": "sed -i '${/^$/d;}'  $XDG_CONFIG_HOME/waybar/style.css ",
+            "waybar-layout-select": "waybar.py -j",
+            "waybar-layout-next": "waybar.py --update --next",
+            "waybar-layout-previous": "waybar.py --update --prev",
             "checkbox": "notify-send 'Checkbox' 'This is a checkbox'",
             "about-hyde": "xdg-open https://github.com/HyDE-Project/HyDE"
         }

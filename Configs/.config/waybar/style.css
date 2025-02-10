@@ -4,7 +4,7 @@
     *     ░▒▒▒░░░▓▓           ___________
     *   ░░▒▒▒░░░░░▓▓        //___________/
     *  ░░▒▒▒░░░░░▓▓     _   _ _    _ _____
-    *  ░░▒▒░░░░░▓▓▓▓▓▓ | | | | |  | |  __/
+    *  ░░▒▒░░░░░▓▓▓▓▓ | | | | |  | |  __/
     *   ░▒▒░░░░▓▓   ▓▓ | |_| | |_/ /| |___
     *    ░▒▒░░▓▓   ▓▓   |__  |____/ |____/
     *      ░▒▓▓   ▓▓  //____/
@@ -13,7 +13,7 @@
     /* Modified by Hyde */
 
     /* Modify/add style in ~/.config/waybar/styles/ */
-    @import "/home/khing/.config/waybar/styles/khing.css";
+    @import "/home/khing/.config/waybar/styles/defaults.css";
 
     /* Imports wallbash colors */
     @import "/home/khing/.cache/hyde/wallbash/gtk.css";

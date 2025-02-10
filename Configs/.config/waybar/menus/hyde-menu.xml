@@ -76,8 +76,28 @@
 
 
                         <child>
+                            <object class="GtkMenuItem" id="waybar-layout-select">
+                                <property name="label">Select Layout</property>
+                            </object>
+                        </child>
+
+
+                        <child>
+                            <object class="GtkMenuItem" id="waybar-layout-next">
+                                <property name="label">Next Layout</property>
+                            </object>
+                        </child>
+
+                        <child>
+                            <object class="GtkMenuItem" id="waybar-layout-prev">
+                                <property name="label">Previous Layout</property>
+                            </object>
+                        </child>
+
+
+                        <child>
                             <object class="GtkMenuItem" id="waybar-reload-css">
-                                <property name="label">Reload css</property>
+                                <property name="label">Reload CSS</property>
                             </object>
                         </child>
 
@@ -104,13 +124,13 @@
             <object class="GtkSeparatorMenuItem" id="delimiter-1" />
         </child>
 
-
+        <!-- 
         <child>
             <object class="GtkCheckMenuItem" id="checkbox">
                 <property name="label">Random Wallpaper</property>
                 <signal name="activate" handler="notify-send ok" />
             </object>
-        </child>
+        </child> -->
 
         <child>
             <object class="GtkMenuItem" id="about-hyde">

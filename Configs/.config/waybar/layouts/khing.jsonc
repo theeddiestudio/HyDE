@@ -1,8 +1,7 @@
 {
-    // sourced from header module //
     "layer": "top",
     "output": [
-        "eDP-1"
+        "*"
     ],
     "position": "top",
     "mod": "dock",
@@ -14,6 +13,7 @@
         "$XDG_CONFIG_HOME/waybar/modules/*json*", // This can be uses on waybar-git
         "$XDG_CONFIG_HOME/waybar/includes.json" // This will be deprecated if waybar 0.12.0 is released on debian
     ],
+    // ? Groups per side
     "modules-left": [
         "group/leaf-inverse"
     ],
@@ -22,6 +22,10 @@
         "group/pill-in#center",
         "group/pill#spotify"
     ],
+    "modules-right": [
+        "group/leaf"
+    ],
+    //  ? Declaring the groups
     "group/pill#spotify": {
         "orientation": "inherit",
         "modules": [
@@ -34,9 +38,6 @@
             "custom/powermenu"
         ]
     },
-    "modules-right": [
-        "group/leaf"
-    ],
     "group/leaf-inverse": {
         "orientation": "inherit",
         "modules": [
@@ -72,7 +73,8 @@
             "custom/cpuinfo",
             "custom/sensorsinfo",
             "custom/swaync",
-            "custom/dunst"
+            "custom/dunst",
+            "custom/hyde-menu",
         ]
     },
     "group/pill-in#clipboard": {

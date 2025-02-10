@@ -42,6 +42,27 @@
         "/home/khing/.config/waybar/modules/pulseaudio.jsonc",
         "/home/khing/.config/waybar/modules/pulseaudio#microphone.jsonc",
         "/home/khing/.config/waybar/modules/custom-swaync.jsonc",
-        "/home/khing/.config/waybar/modules/custom-hyde-menu.jsonc"
+        "/home/khing/.config/waybar/modules/custom-hyde-menu.jsonc",
+        "/home/khing/.config/waybar/modules/cava.jsonc",
+        "/home/khing/.config/waybar/modules/cliphist.jsonc",
+        "/home/khing/.config/waybar/modules/cpuinfo.jsonc",
+        "/home/khing/.config/waybar/modules/footer.jsonc",
+        "/home/khing/.config/waybar/modules/github_hyprdots.jsonc",
+        "/home/khing/.config/waybar/modules/gpuinfo.jsonc",
+        "/home/khing/.config/waybar/modules/header.jsonc",
+        "/home/khing/.config/waybar/modules/keybindhint.jsonc",
+        "/home/khing/.config/waybar/modules/language.jsonc",
+        "/home/khing/.config/waybar/modules/notifications.jsonc",
+        "/home/khing/.config/waybar/modules/power.jsonc",
+        "/home/khing/.config/waybar/modules/privacy.jsonc",
+        "/home/khing/.config/waybar/modules/spotify.jsonc",
+        "/home/khing/.config/waybar/modules/taskbar.jsonc",
+        "/home/khing/.config/waybar/modules/theme.jsonc",
+        "/home/khing/.config/waybar/modules/tray.jsonc",
+        "/home/khing/.config/waybar/modules/updates.jsonc",
+        "/home/khing/.config/waybar/modules/wallchange.jsonc",
+        "/home/khing/.config/waybar/modules/wbar.jsonc",
+        "/home/khing/.config/waybar/modules/window.jsonc",
+        "/home/khing/.config/waybar/modules/workspaces.jsonc"
     ]
 }
