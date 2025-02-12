@@ -172,33 +172,6 @@ Wall_Hash() {
     [ ! -e "$(readlink -f "${wallSet}")" ] && echo "fixing link :: ${wallSet}" && ln -fs "${wallList[setIndex]}" "${wallSet}"
 }
 
-# interfacing with swww backend
-backend_swww() {
-    local selected_wall="${1:-"$$HYDE_CACHE_HOME/wall.set"}"
-    lockFile="$HYDE_RUNTIME_DIR/$(basename "${0}").lock"
-    [ -e "${lockFile}" ] && echo "An instance of the script is already running..." && exit 1
-    touch "${lockFile}"
-    trap 'rm -f ${lockFile}' EXIT
-
-    if ! swww query &>/dev/null; then
-        swww-daemon --format xrgb &
-        disown
-        swww query && swww restore
-    fi
-
-    #// set defaults
-    xtrans=${WALLPAPER_SWWW_TRANSITION_DEFAULT}
-    [ -z "${xtrans}" ] && xtrans="grow"
-    [ -z "${wallFramerate}" ] && wallFramerate=60
-    [ -z "${wallTransDuration}" ] && wallTransDuration=0.4
-
-    #// apply wallpaper
-    # TODO: add support for other backends
-    print_log -sec "wallpaper" -stat "apply" "$(readlink -f "$selected_wall")"
-    swww img "$(readlink -f "$selected_wall")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration "${wallTransDuration}" --transition-fps "${wallFramerate}" --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" &
-
-}
-
 main() {
     #// set full cache variables
     if [ -z "$wallpaper_backend" ] &&
@@ -284,13 +257,11 @@ main() {
 
     # TODO Add more backends. backend functions are used to e,g apply wallpaper or just a post processing like we do with swww
     # Apply wallpaper to  backend
-    if [ -n "${wallpaper_backend}" ]; then
+    if [ -f "${scrDir}/wallpaper.${wallpaper_backend}.sh" ] && [ -n "${wallpaper_backend}" ]; then
         print_log -sec "wallpaper" "Using backend: ${wallpaper_backend}"
-        case "${wallpaper_backend}" in
-        swww)
-            backend_swww "${wallSet}"
-            ;;
-        esac
+        "${scrDir}/wallpaper.${wallpaper_backend}.sh" "${wallSet}"
+    else
+        print_log -err "wallpaper" "Backend not found: ${wallpaper_backend}"
     fi
 
     if [ "${wallpaper_setter_flag}" == "select" ]; then
