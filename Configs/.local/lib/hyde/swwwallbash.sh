@@ -385,6 +385,10 @@ export revert_colors
 
 find "${wallbashDirs[@]}" -type f -path "*/always*" -name "*.dcol" 2>/dev/null | sort | awk '!seen[substr($0, match($0, /[^/]+$/))]++' | parallel fn_wallbash {}
 
+# Add post processing here
+
+toml_write "${confDir}/kdeglobals" "Colors:View" "BackgroundNormal" "#${dcol_pry1:-000000}"
+
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && [ "$HYPRLAND_RELOAD" -eq 1 ]; then
     hyprctl reload -q
 fi
