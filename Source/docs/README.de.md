@@ -14,12 +14,13 @@ Mehrsprachige README-Unterstützung
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](../../README.md)
 [![es](https://img.shields.io/badge/lang-es-yellow.svg)](README.es.md)
+[![nl](https://img.shields.io/badge/lang-nl-green.svg)](README.nl.md)
 [![中文](https://img.shields.io/badge/lang-中文-orange.svg)](README.zh.md)
 <!-- [![de](https://img.shields.io/badge/lang-de-black.svg)](README.de.md) -->
 
 <div align="center"><br>
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
-  <a href="#aktualisieren"><kbd> <br> Aktualisieren <br> </kbd></a>&ensp;&ensp;>
+  <a href="#aktualisieren"><kbd> <br> Aktualisieren <br> </kbd></a>&ensp;&ensp;
   <a href="#themen"><kbd> <br> Themen <br> </kbd></a>&ensp;&ensp;
   <a href="#stile"><kbd> <br> Stile <br> </kbd></a>&ensp;&ensp;
   <a href="KEYBINDINGS.de.md"><kbd> <br> Tastenkombinationen <br> </kbd></a>&ensp;&ensp;
@@ -39,7 +40,7 @@ Mehrsprachige README-Unterstützung
 </div>
 
 Hier finden Sie die vollständige Notiz:
-[Reise zu HyDE und darüber hinaus](./Hyprdots-to-HyDE.md)
+[Reise zu HyDE und darüber hinaus](../../Hyprdots-to-HyDE.md)
 
 <!--
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
@@ -92,6 +93,11 @@ Sehen Sie sich die Installationsanweisungen für HyDE in [Hyde-cli - Usage](http
 
 Bitte starten Sie neu, nachdem das Installationsskript abgeschlossen ist und Sie zum ersten Mal den SDDM-Anmeldebildschirm (oder einen schwarzen Bildschirm) sehen.
 Weitere Einzelheiten entnehmen Sie bitte dem [Installations-Wiki] (<https://github.com/HyDE-Project/HyDE/wiki/installation>).
+
+<div align="right">
+  <br>
+  <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
+</div>
 
 <a id="aktualisieren"></a>
 <img src="https://readme-typing-svg.herokuapp.com?font=Lexend+Giga&size=25&pause=1000&color=CCA9DD&width=435&lines=AKTUALISIEREN" width="450"/>

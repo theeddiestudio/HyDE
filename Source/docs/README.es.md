@@ -14,6 +14,7 @@ Soporte multilingüe para el README
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](../../README.md)
 [![de](https://img.shields.io/badge/lang-de-black.svg)](README.de.md)
+[![nl](https://img.shields.io/badge/lang-nl-green.svg)](README.nl.md)
 [![中文](https://img.shields.io/badge/lang-中文-orange.svg)](README.zh.md)
 <!-- [![es](https://img.shields.io/badge/lang-es-yellow.svg)](README.es.md) -->
 
@@ -22,6 +23,7 @@ Soporte multilingüe para el README
 <br>
 
 <a href="#instalación"><kbd> <br> Instalación <br> </kbd></a>&ensp;&ensp;
+<a href="#actualizar"><kbd> <br> actualizar <br> </kbd></a>&ensp;&ensp;
 <a href="#temas"><kbd> <br> Temas <br> </kbd></a>&ensp;&ensp;
 <a href="#estilos"><kbd> <br> Estilos <br> </kbd></a>&ensp;&ensp;
 <a href="KEYBINDINGS.es.md"><kbd> <br> Combinaciones <br> </kbd></a>&ensp;&ensp;
@@ -42,7 +44,7 @@ Soporte multilingüe para el README
 </div>
 
 Mira esto para ver la nota completa:
-[Viaje a HyDE y más allá](./Hyprdots-to-HyDE.md)
+[Viaje a HyDE y más allá](../../Hyprdots-to-HyDE.md)
 
 <!--
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
@@ -90,6 +92,11 @@ View installation instructions for HyDE in [Hyde-cli - Usage](https://github.com
 
 Reinicie después de que el script de instalación se complete y lo lleve a la pantalla de inicio de sesión de SDDM (o pantalla negra) por primera vez.
 Para obtener más detalles, consulte la [wiki de instalación](https://github.com/HyDE-Project/HyDE/wiki/installation).
+
+<div align="right">
+  <br>
+  <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
+</div>
 
 <a id="actualizar"></a>  
 <img src="https://readme-typing-svg.herokuapp.com?font=Lexend+Giga&size=25&pause=1000&color=CCA9DD&width=435&lines=ACTUALIZAR" width="450"/>
