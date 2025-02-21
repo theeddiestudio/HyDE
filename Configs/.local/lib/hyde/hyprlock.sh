@@ -54,7 +54,7 @@ fn_profile() {
 }
 
 fn_mpris() {
-    local player=${1:-$(playerctl --list-all | head -n 1)}
+    local player=${1:-$(playerctl --list-all 2>/dev/null | head -n 1)}
     THUMB="${cacheDir}/landing/mpris"
     player_status="$(playerctl -p "${player}" status 2>/dev/null)"
     if [[ "${player_status}" == "Playing" ]]; then
