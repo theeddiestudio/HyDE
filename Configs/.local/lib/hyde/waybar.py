@@ -24,6 +24,32 @@ logger = logging.getLogger(__name__)
 if os.getenv("DEBUG"):
     logger.setLevel(logging.DEBUG)
 
+MODULE_DIRS = [
+    os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/modules/"),
+    os.path.expanduser(
+        os.getenv("XDG_DATA_HOME", "~/.local/share") + "/waybar/modules/"
+    ),
+    "/usr/local/share/waybar/modules/",
+    "/usr/share/waybar/modules/",
+]
+
+LAYOUT_DIRS = [
+    os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/layouts"),
+    os.path.expanduser(
+        os.getenv("XDG_DATA_HOME", "~/.local/share") + "/waybar/layouts"
+    ),
+    "/usr/local/share/waybar/layouts",
+    "/usr/share/waybar/layouts",
+]
+
+STYLE_DIRS = [
+    os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/styles"),
+    os.path.expanduser(os.getenv("XDG_DATA_HOME", "~/.local/share") + "/waybar/styles"),
+    #  ? Impossible to use this path for css files
+    # "/usr/local/share/waybar/styles",
+    # "/usr/share/waybar/styles",
+]
+
 
 def source_env_file(filepath):
     """Source environment variables from a file."""
@@ -44,16 +70,34 @@ def get_file_hash(filepath):
     return sha256.hexdigest()
 
 
+LAYOUT_DIRS = [
+    os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/layouts"),
+    os.path.expanduser(
+        os.getenv("XDG_DATA_HOME", "~/.local/share") + "/waybar/layouts"
+    ),
+    "/usr/local/share/waybar/layouts",
+    "/usr/share/waybar/layouts",
+]
+
+
+def find_layout_files():
+    """Recursively find all layout files in the specified directories."""
+    layouts = []
+    for layout_dir in LAYOUT_DIRS:
+        for root, _, files in os.walk(layout_dir):
+            for file in files:
+                if file.endswith(".jsonc"):
+                    layouts.append(os.path.join(root, file))
+    return sorted(layouts)
+
+
 def get_current_layout_from_config():
-    """Get the current layout by comparing the hash of the files in the layouts directory with the current config.jsonc."""
+    """Get the current layout by comparing the hash of the files in the layout directories with the current config.jsonc."""
     config_filepath = os.path.expanduser(
         os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/config.jsonc"
     )
     config_hash = get_file_hash(config_filepath)
-    layout_dir = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/layouts"
-    )
-    layouts = sorted(glob.glob(os.path.join(layout_dir, "*.jsonc")))
+    layouts = find_layout_files()
     for layout in layouts:
         if get_file_hash(layout) == config_hash:
             return layout
@@ -93,20 +137,31 @@ def ensure_state_file():
 def resolve_style_path(layout_path):
     """Resolve the style path based on the layout path."""
     name = os.path.basename(layout_path).replace(".jsonc", "")
-    style_dir = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/styles"
-    )
 
-    # First check for a match with the name#tag format
-    style_path = glob.glob(os.path.join(style_dir, f"{name}*.css"))
-    if not style_path:
+    for style_dir in STYLE_DIRS:
+        # First check for a match with the name#tag format
+        style_path = glob.glob(os.path.join(style_dir, f"{name}*.css"))
+
+        if style_path:
+            logger.debug(f"Resolved style path: {style_path[0]}")
+            return style_path[0]
+
         # If not found, try without the '#'
         name = name.split("#")[0]
         style_path = glob.glob(os.path.join(style_dir, f"{name}*.css"))
+        if style_path:
+            logger.debug(f"Resolved style path with #: {style_path[0]}")
+            return style_path[0]
 
-    if not style_path:
-        return os.path.join(style_dir, "defaults.css")
-    return style_path[0]
+    # Check each style directory for 'defaults.css'
+    for style_dir in STYLE_DIRS:
+        default_path = os.path.join(style_dir, "defaults.css")
+        if os.path.exists(default_path):
+            logger.debug(f"Using default style: {default_path}")
+            return default_path
+
+    logger.warning("No default style found in any style directory")
+    return os.path.join(STYLE_DIRS[0], "defaults.css")
 
 
 def set_layout(layout):
@@ -152,10 +207,7 @@ def set_layout(layout):
 
 def handle_layout_navigation(option):
     """Handle --next, --prev, and --set options."""
-    layout_dir = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/layouts"
-    )
-    layouts = sorted(glob.glob(os.path.join(layout_dir, "*.jsonc")))
+    layouts = find_layout_files()
     state_file = os.path.expanduser(
         os.getenv("HYDE_STATE_HOME", "~/.local/state") + "/staterc"
     )
@@ -169,6 +221,13 @@ def handle_layout_navigation(option):
     if not current_layout:
         logger.error("Current layout not found in state file.")
         return
+
+    if current_layout not in layouts:
+        logger.warning("Current layout file not found, recaching layouts.")
+        current_layout = get_current_layout_from_config()
+        if not current_layout:
+            logger.error("Failed to recache current layout.")
+            return
 
     current_index = layouts.index(current_layout)
     if option == "--next":
@@ -187,15 +246,18 @@ def handle_layout_navigation(option):
 
 def list_layouts():
     """List all layouts with their matching styles."""
-    layout_dir = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/layouts"
-    )
-    layouts = sorted(glob.glob(os.path.join(layout_dir, "*.jsonc")))
+    layouts = find_layout_files()
     layout_style_pairs = []
     for layout in layouts:
-        name = os.path.basename(layout).replace(".jsonc", "")
-        style_path = resolve_style_path(layout)
-        layout_style_pairs.append({"layout": layout, "name": name, "style": style_path})
+        for layout_dir in LAYOUT_DIRS:
+            if layout.startswith(layout_dir):
+                relative_path = os.path.relpath(layout, start=layout_dir)
+                name = relative_path.replace(".jsonc", "")
+                style_path = resolve_style_path(layout)
+                layout_style_pairs.append(
+                    {"layout": layout, "name": name, "style": style_path}
+                )
+                break
     return layout_style_pairs
 
 
@@ -417,33 +479,58 @@ def main():
 
 
 def update_icon_size():
-    widgets_directory = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/modules"
+    includes_file = os.path.join(
+        os.getenv("XDG_CONFIG_HOME", os.path.expanduser("~/.config")),
+        "waybar",
+        "includes.json",
     )
+
+    if os.path.exists(includes_file):
+        try:
+            with open(includes_file, "r") as file:
+                includes_data = json.load(file)
+        except (json.JSONDecodeError, FileNotFoundError):
+            includes_data = {"include": []}
+    else:
+        includes_data = {"include": []}
+
     icon_size = int(
         os.getenv(
             "WAYBAR_ICON_SIZE",
-            int(os.getenv("WAYBAR_FONT_SIZE", int(os.getenv("FONT_SIZE", 10))) + 6),
+            int(os.getenv("WAYBAR_FONT_SIZE", int(os.getenv("FONT_SIZE", 10)))),
         )
     )
-    for json_file in glob.glob(os.path.join(widgets_directory, "*.json")):
-        data = parse_json_file(json_file)
-        data = modify_json_key(data, "icon-size", icon_size)
-        data = modify_json_key(data, "tooltip-icon-size", icon_size)
-        with open(json_file, "w") as file:
-            json.dump(data, file, indent=4)
-    privacy_file = os.path.expanduser(
-        os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/modules/privacy.json"
+
+    updated_entries = {}
+
+    for directory in MODULE_DIRS:
+        for json_file in glob.glob(os.path.join(directory, "*.json")):
+            data = parse_json_file(json_file)
+
+            for key, value in data.items():
+                if isinstance(value, dict):
+                    icon_size_multiplier = value.get("icon-size-multiplier", 1)
+                    final_icon_size = icon_size * icon_size_multiplier
+
+                    data[key] = modify_json_key(value, "icon-size", final_icon_size)
+                    data[key] = modify_json_key(
+                        value, "tooltip-icon-size", final_icon_size
+                    )
+
+            updated_entries.update(data)
+
+    includes_data.update(updated_entries)
+
+    with open(includes_file, "w") as file:
+        json.dump(includes_data, file, indent=4)
+    logger.info(
+        f"Successfully updated icon sizes and appended to '{includes_file}' with {len(updated_entries)} entries."
     )
-    data = parse_json_file(privacy_file)
-    data = modify_json_key(data, "icon-size", icon_size - 6)
-    with open(privacy_file, "w") as file:
-        json.dump(data, file, indent=4)
 
 
 def update_border_radius():
     css_filepath = os.path.expanduser(
-        "~/.config/waybar/styles/dynamic/border-radius.css"
+        "~/.config/waybar/styles/includes/border-radius.css"
     )
     border_radius = os.getenv("WAYBAR_BORDER_RADIUS")
     if not border_radius:
@@ -472,32 +559,32 @@ def update_border_radius():
 
 
 def generate_includes():
-    directories = [
-        os.path.expanduser(
-            os.getenv("XDG_CONFIG_HOME", "~/.config") + "/waybar/modules/"
-        ),
-        os.path.expanduser(
-            os.getenv("XDG_DATA_HOME", "~/.local/share") + "/hyde/waybar/modules/"
-        ),
-    ]
+    includes_file = os.path.join(
+        os.getenv("XDG_CONFIG_HOME", os.path.expanduser("~/.config")),
+        "waybar",
+        "includes.json",
+    )
+
+    if os.path.exists(includes_file):
+        with open(includes_file, "r") as file:
+            includes_data = json.load(file)
+    else:
+        includes_data = {"include": []}
+
     includes = []
-    for directory in directories:
+    for directory in MODULE_DIRS:
         if not os.path.isdir(directory):
             logger.debug(f"Directory '{directory}' does not exist, skipping...")
             continue
         includes.extend(glob.glob(os.path.join(directory, "*.json")))
         includes.extend(glob.glob(os.path.join(directory, "*.jsonc")))
-    includes_data = {"include": includes}
-    output_filepath = os.path.join(
-        os.getenv("XDG_CONFIG_HOME", os.path.expanduser("~/.config")),
-        "waybar",
-        "includes.json",
-    )
-    with open(output_filepath, "w") as file:
+
+    # # Prepend the new includes to the existing ones and deduplicate
+    includes_data["include"] = list(dict.fromkeys(includes))
+
+    with open(includes_file, "w") as file:
         json.dump(includes_data, file, indent=4)
-    logger.info(
-        f"Successfully generated '{output_filepath}' with {len(includes)} entries."
-    )
+    logger.info(f"Successfully updated '{includes_file}' with {len(includes)} entries.")
 
 
 def update_config(config_path):
@@ -513,9 +600,11 @@ def update_style(style_path):
     xdg_config_home = os.getenv("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
     style_filepath = os.path.join(xdg_config_home, "waybar", "style.css")
     if not style_path:
-        style_path = os.path.join(xdg_config_home, "waybar", "styles", "defaults.css")
+        current_layout = get_current_layout_from_config()
+        style_path = resolve_style_path(current_layout)
     if not os.path.exists(style_path):
-        style_path = os.path.join(xdg_config_home, "waybar", "styles", "defaults.css")
+        logger.error(f"Cannot reconcile style path: {style_path}")
+        sys.exit(1)
     write_style_file(style_filepath, style_path)
 
 
