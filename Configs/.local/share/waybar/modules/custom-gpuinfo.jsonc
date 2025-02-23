@@ -9,7 +9,7 @@
         "max-length": 1000,
         "on-click": "gpuinfo.sh --toggle",
         "menu": "on-click-right",
-        "menu-file": "~/.config/waybar/menus/gpuinfo.xml",
+        "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/gpuinfo.xml",
         "menu-actions": {
             "toggle": "gpuinfo.sh --toggle",
             "reset": "gpuinfo.sh --reset"

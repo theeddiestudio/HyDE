@@ -13,7 +13,7 @@
     /* Modified by Hyde */
 
     /* Modify/add style in ~/.config/waybar/styles/ */
-    @import "/home/khing/.config/waybar/styles/defaults.css";
+    @import "/home/khing/.local/share/waybar/styles/defaults.css";
 
     /* Imports wallbash colors */
     @import "/home/khing/.cache/hyde/wallbash/gtk.css";

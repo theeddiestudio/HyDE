@@ -10,7 +10,7 @@
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
     "include": [
-        "$XDG_CONFIG_HOME/waybar/modules/*json*", // This can be uses on waybar-git
+        "$XDG_CONFIG_HOME/waybar/modules/*json*", // This can be used on waybar-git
         "$XDG_CONFIG_HOME/waybar/includes.json" // This will be deprecated if waybar 0.12.0 is released on debian
     ],
     // ? Groups per side
@@ -18,24 +18,25 @@
         "group/leaf-inverse"
     ],
     "modules-center": [
-        "group/pill#power",
+        "group/pill#1",
         "group/pill-in#center",
-        "group/pill#spotify"
+        "group/pill#2"
     ],
     "modules-right": [
         "group/leaf"
     ],
     //  ? Declaring the groups
-    "group/pill#spotify": {
+    "group/pill#2": {
         "orientation": "inherit",
         "modules": [
-            "custom/spotify"
+            "custom/hyprsunset",
+            "idle_inhibitor"
         ]
     },
-    "group/pill#power": {
+    "group/pill#1": {
         "orientation": "inherit",
         "modules": [
-            "custom/powermenu"
+            "custom/weather"
         ]
     },
     "group/leaf-inverse": {
@@ -49,13 +50,10 @@
         "orientation": "inherit",
         "modules": [
             "keyboard-state",
-            "custom/hyprsunset",
-            "idle_inhibitor",
             "clock",
             "custom/updates",
             "custom/keybindhint",
-            "custom/gamemode",
-            "custom/weather"
+            "custom/gamemode"
         ]
     },
     "group/leaf": {
@@ -74,7 +72,7 @@
             "custom/sensorsinfo",
             "custom/swaync",
             "custom/dunst",
-            "custom/hyde-menu",
+            "custom/hyde-menu"
         ]
     },
     "group/pill-in#clipboard": {

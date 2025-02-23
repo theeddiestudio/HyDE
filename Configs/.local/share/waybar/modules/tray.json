@@ -1,7 +1,6 @@
 {
     "tray": {
         "icon-size": 16,
-        "rotate": 0,
-        "spacing": 1
+        "icon-size-multiplier": 1.6
     }
 }

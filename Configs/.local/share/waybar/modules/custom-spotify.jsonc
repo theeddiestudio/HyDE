@@ -12,7 +12,7 @@
         "escape": true,
         "tooltip": true,
         "menu": "on-click-right",
-        "menu-file": "~/.config/waybar/menus/spotify.xml",
+        "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/spotify.xml",
         "menu-actions": {
             "play-pause": "playerctl play-pause --player spotify",
             "next": "playerctl next --player spotify",

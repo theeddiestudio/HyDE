@@ -1,21 +1,24 @@
 /* Group Styles */
 
 /* Pill Styles */
-@import "groups/pill.css";
-@import "groups/pill-up.css";
-@import "groups/pill-right.css";
-@import "groups/pill-down.css";
-@import "groups/pill-left.css";
-@import "groups/pill-in.css";
-@import "groups/pill-out.css";
+@import "includes/groups/pill.css";
+@import "includes/groups/pill-up.css";
+@import "includes/groups/pill-right.css";
+@import "includes/groups/pill-down.css";
+@import "includes/groups/pill-left.css";
+@import "includes/groups/pill-in.css";
+@import "includes/groups/pill-out.css";
 /* Leaf Style */
-@import "groups/leaf.css";
-@import "groups/leaf-inverse.css";
+@import "includes/groups/leaf.css";
+@import "includes/groups/leaf-inverse.css";
 
 
 /* Dynamic Stuff */
-@import "dynamic/border-radius.css";
-@import "dynamic/global.css";
+/*
+"../../../" Use relative path to navigate $HOME $HOME/
+*/
+@import "../../../../.config/waybar/styles/includes/border-radius.css";
+@import "../../../../.config/waybar/styles/includes/global.css";
 
 /* Base HyDE Styles */
 
