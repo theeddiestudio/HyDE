@@ -4,6 +4,9 @@ if status is-interactive
     starship init fish | source
 end
 
+clear
+fastfetch
+
 # List Directory
 alias l='eza -lh --hyperlink  --icons=auto' # long list
 alias ls='eza -1 --hyperlink   --icons=auto' # short list
