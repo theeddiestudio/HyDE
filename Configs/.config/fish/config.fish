@@ -1,18 +1,15 @@
 set -g fish_greeting
 
-source ~/.config/fish/hyde_config.fish
-
 if status is-interactive
     starship init fish | source
 end
 
 # List Directory
-alias l='eza -lh  --icons=auto' # long list
-alias ls='eza -1   --icons=auto' # short list
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-alias ld='eza -lhD --icons=auto' # long list dirs
-alias lt='eza --icons=auto --tree' # list folder as tree
-alias vc='code'
+alias l='eza -lh --hyperlink  --icons=auto' # long list
+alias ls='eza -1 --hyperlink   --icons=auto' # short list
+alias ll='eza -lha --hyperlink --icons=auto --sort=name --group-directories-first' # long list all
+alias ld='eza -lhD --hyperlink --icons=auto' # long list dirs
+alias lt='eza --hyperlink --icons=auto --tree' # list folder as tree
 
 # Handy change dir shortcuts
 abbr .. 'cd ..'
