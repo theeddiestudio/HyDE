@@ -38,6 +38,8 @@ satty                                                  # Modern Screenshot Annot
 cliphist                                               # clipboard manager
 hyprsunset                                             # blue light filter
 qbittorrent
+syncthing
+obsidian
 
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
